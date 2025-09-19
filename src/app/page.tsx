@@ -2,6 +2,7 @@ import { Hero } from "@/components/site/Hero";
 import { CTA } from "@/components/site/CTA";
 import { Section } from "@/components/site/Section";
 import { Footer } from "@/components/site/Footer";
+import { MARKETING } from "@/lib/assets";
 
 export default function LandingPage() {
   return (
@@ -10,7 +11,7 @@ export default function LandingPage() {
       <CTA />
       <Section
         title="Feature Flags"
-        imageSrc="/illus-1.svg"
+        imageSrc={MARKETING.band1}
         imageRatio="16:9"
         body={
           <>
@@ -24,14 +25,14 @@ export default function LandingPage() {
       />
       <Section
         title="Code-Splitting by Default"
-        imageSrc="/illus-2.svg"
+        imageSrc={MARKETING.band2}
         imageRatio="1:1"
         reverse
         body={<p>Heavy components are dynamically imported so the core UI stays fast while prototyping.</p>}
       />
       <Section
         title="Mock → Real Seam"
-        imageSrc="/illus-3.svg"
+        imageSrc={MARKETING.alt.horseAndFoal}
         imageRatio="4:3"
         body={<p>Shared types and adapters let you wire real endpoints later without touching UI components.</p>}
       />

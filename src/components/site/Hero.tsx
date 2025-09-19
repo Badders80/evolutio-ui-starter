@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ImageContainer } from "@/components/layout/ImageContainer";
+import { MARKETING } from "@/lib/assets";
 
 export function Hero() {
   return (
@@ -22,7 +23,7 @@ export function Hero() {
           </div>
         </div>
         <ImageContainer
-          src="/hero.svg"
+          src={MARKETING.hero}
           alt="Evolution hero"
           ratio="4:3"
           mode="cover"

@@ -1,12 +1,14 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// Robust logo that matches the exact file you placed in /public/brand/*
-// ─────────────────────────────────────────────────────────────────────────────
+// ============================================================================
+// Robust logo that cycles through candidates (env → gold/white/black) per theme.
+// ============================================================================
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { brandCandidates } from "@/lib/assets";
+import { BRAND } from "@/lib/assets";
+
+type Path = `/${string}`;
 
 function useIsDark(): boolean {
   const [dark, setDark] = useState(false);
@@ -33,7 +35,7 @@ export function BrandMark({
   label?: string;
 }) {
   const isDark = useIsDark();
-  const candidates = useMemo(() => brandCandidates(isDark), [isDark]);
+  const candidates = useMemo<Path[]>(() => (isDark ? BRAND.candidates.dark : BRAND.candidates.light), [isDark]);
   const [idx, setIdx] = useState(0);
   const src = candidates[idx];
 
@@ -41,7 +43,7 @@ export function BrandMark({
     <Link href={href} className={`flex items-center gap-2 ${className}`}>
       {src ? (
         <Image
-          key={src}                // Why: force reload when candidate changes
+          key={src}
           src={src}
           alt={`${label} logo`}
           width={size}

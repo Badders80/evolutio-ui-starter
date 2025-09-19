@@ -1,54 +1,55 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// Centralized brand assets with env override + safe fallbacks
-// ─────────────────────────────────────────────────────────────────────────────
-
+// ============================================================================
+// Central asset registry using your real files.
+// ============================================================================
 type Path = `/${string}`;
-const p = (x: string): Path => (x.startsWith("/") ? (x as Path) : (`/${x}` as Path));
+const asPath = (x: string): Path => (x.startsWith("/") ? (x as Path) : (`/${x}` as Path));
 
-// Env overrides (exact filenames, including extension)
-const ENV_LOGO = process.env.NEXT_PUBLIC_BRAND_LOGO?.trim() || "";
-const ENV_LOGO_DARK = process.env.NEXT_PUBLIC_BRAND_LOGO_DARK?.trim() || "";
-
-/** Fallback candidates if envs are not provided or file missing.
- *  Order matters. Add any filenames you actually keep in /public/brand/. */
-const FALLBACKS = {
-  light: [
-    "/brand/logo.svg",
-    "/brand/logo.png",
-    "/brand/Logo-Black.png",
-    "/brand/EvolutionStables Mono-Black.png",   // supports files with spaces
-    "/brand/Evolution-Stables-Logo-Black.png",
-    "/brand/Evolution-Stables-Logo-Black.svg"
-  ],
-  dark: [
-    "/brand/logo-dark.svg",
-    "/brand/logo-white.svg",
-    "/brand/Logo-White.png",
-    "/brand/EvolutionStables Mono-White.png",
-    "/brand/Evolution-Stables-Logo-White.png",
-    "/brand/Evolution-Stables-Logo-White.svg"
-  ]
-} as const;
-
-export function brandCandidates(isDark: boolean): Path[] {
-  const first = (isDark ? ENV_LOGO_DARK : ENV_LOGO) as Path | "";
-  const pool = isDark ? FALLBACKS.dark : FALLBACKS.light;
-  return (first ? [first as Path] : []).concat([...pool]);
-}
+/**
+ * ENV OVERRIDES (optional):
+ *  - NEXT_PUBLIC_BRAND_LOGO=/brand/Logo-Black.png
+ *  - NEXT_PUBLIC_BRAND_LOGO_DARK=/brand/Evolution-Stables-Logo-White.png
+ */
+const ENV_LOGO = (process.env.NEXT_PUBLIC_BRAND_LOGO || "").trim();
+const ENV_LOGO_DARK = (process.env.NEXT_PUBLIC_BRAND_LOGO_DARK || "").trim();
 
 export const BRAND = {
-  favicon: p("brand/favicon.svg"),
-  ogDefault: p("brand/og-default.png")
+  favicon: asPath("brand/favicon.svg"),
+  // Exact files from your /public/brand folder:
+  candidates: {
+    light: [
+      ENV_LOGO, // explicit override
+      "/brand/Logo-Black.png",
+      "/brand/EvolutionStables Mono-Black.png",
+      "/brand/Evolution-Stables-Logo-Black.png",
+      "/brand/Evolution-Stables-Logo-Black.jpg",
+      "/brand/EvolutionStables Mono-Black.svg"
+    ].filter(Boolean) as Path[],
+    dark: [
+      ENV_LOGO_DARK, // explicit override
+      "/brand/Logo-Gold.png",
+      "/brand/EvolutionStables Mono-Gold.png",
+      "/brand/Evolution-Stables-Logo-White.png",
+      "/brand/EvolutionStables Mono-White.png",
+      "/brand/EvolutionStables Mono-White.svg"
+    ].filter(Boolean) as Path[]
+  }
 } as const;
 
-/** Marketing images */
+// Marketing/content imagery (your /public/images/content files):
 export const MARKETING = {
-  hero: p("images/marketing/hero.jpg"),
-  section1: p("images/marketing/section-1.jpg"),
-  section2: p("images/marketing/section-2.webp")
+  // Hero: dark/close-up horses — good for poster overlay
+  hero: asPath("images/content/Horse-Double-Black.png"),
+  // Band images (section separators)
+  band1: asPath("images/content/Hooves-on-grass.png"),
+  band2: asPath("images/content/Landscape-digitaloverlay.jpg"),
+  // Alternates you can swap to any time:
+  alt: {
+    backgroundHoovesBW: asPath("images/content/Background-hooves-back-and-white.jpg"),
+    horseAndFoal: asPath("images/content/Horse-and-foal.jpg")
+  }
 } as const;
 
-/** Helper if you want to version/cache-bust assets later */
+// Helper if you want to version/cache-bust assets later
 export function v(path: Path, version = "v1"): Path {
   // Why: easy switch to /v2/... without hunting references
   return path.replace(/^\/(.*)$/, `/${version}/$1`) as Path;
