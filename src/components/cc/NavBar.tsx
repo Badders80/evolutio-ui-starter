@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { BrandMark } from "../BrandMark";
 
 type NavBarProps = {
   className?: string;
@@ -14,15 +14,7 @@ export function NavBar({ className = "" }: NavBarProps) {
 
   return (
     <div className={rootClass}>
-      <Link href="/cc" className="flex shrink-0 items-center" aria-label="Evolution Stables component catalog">
-        <Image
-          src="/brand/EvolutionStables%20Mono-Grey.svg"
-          alt="Evolution Stables logo"
-          width={36}
-          height={36}
-          priority
-        />
-      </Link>
+      <BrandMark href="/cc" size={36} label="Evolution Stables" className="shrink-0" />
       <nav className="pointer-events-auto absolute left-1/2 flex -translate-x-1/2 items-center gap-6 text-sm">
         {links.map((link) => (
           <Link key={link.href} href={link.href} className="opacity-80 transition hover:opacity-100">
