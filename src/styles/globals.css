@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- type scale tokens (fluid via clamp) ---- */
+:root {
+  /* Sizes (px): min → max */
+  --font-h1: clamp(2.25rem, 2.2vw + 1.4rem, 3.5rem);   /* 36 → 56 */
+  --font-h2: clamp(1.75rem, 1.4vw + 1.0rem, 2.5rem);   /* 28 → 40 */
+  --font-h3: clamp(1.375rem, 0.9vw + 0.9rem, 1.75rem); /* 22 → 28 */
+  --font-h4: clamp(1.125rem, 0.5vw + 0.9rem, 1.375rem);/* 18 → 22 */
+  --font-h5: 1rem;                                     /* 16 */
+  --font-h6: 0.875rem;                                 /* 14 */
+
+  /* Line-heights */
+  --leading-h1: 1.1;
+  --leading-h2: 1.15;
+  --leading-h3: 1.2;
+  --leading-h4: 1.25;
+  --leading-h5: 1.35;
+  --leading-h6: 1.4;
+
+  /* Tracking */
+  --tracking-h1: -0.02em;
+  --tracking-h2: -0.01em;
+  --tracking-h3: -0.005em;
+  --tracking-h4: 0em;
+  --tracking-h5: 0em;
+  --tracking-h6: 0.01em;
+
+  /* Body/lead */
+  --font-body: 1rem;           /* 16 */
+  --leading-body: 1.65;
+  --font-lead: clamp(1.125rem, 0.4vw + 1rem, 1.375rem); /* 18 → 22 */
+  --leading-lead: 1.55;
+  --tracking-lead: 0em;
+}
+
+/* Smoothing + color scheme */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+:root { color-scheme: light dark; }
+
+@layer base {
+  /* Apply BwGradual to main headings */
+  h1,h2,h3 { font-family: var(--font-heading), var(--tw-font-sans); }
+}
+
+@layer utilities {
+  /* Utility for ad-hoc use */
+  .font-heading { font-family: var(--font-heading), var(--tw-font-sans); }
+}
+
+/* (Optional) tighten headings slightly in prose blocks */
+.prose :where(h1,h2,h3){ letter-spacing: var(--tracking-h3) }

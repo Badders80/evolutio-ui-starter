@@ -1,0 +1,46 @@
+"use client";
+
+import { useFeatureFlags } from "@/lib/featureFlags";
+import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
+import { getUsers } from "@/lib/api";
+import { useEffect, useState } from "react";
+
+export default function DebugPage() {
+  const flags = useFeatureFlags();
+  const [users, setUsers] = useState<any[]>([]);
+
+  useEffect(() => {
+    getUsers().then(setUsers).catch(() => setUsers([]));
+  }, []);
+
+  const qs = new URLSearchParams({
+    enableHeavy: String(!flags.enableHeavy),
+    apiMode: flags.apiMode === "mock" ? "real" : "mock"
+  }).toString();
+
+  return (
+    <div className="grid gap-6">
+      <Card title="Flags">
+        <pre className="overflow-auto rounded-lg bg-zinc-950 p-4 text-xs text-zinc-100">
+{JSON.stringify(flags, null, 2)}
+        </pre>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <Button href={`?${qs}`} variant="primary">
+            Toggle Flags via URL
+          </Button>
+        </div>
+        <p className="mt-2 text-xs text-zinc-500">
+          {/* Why: make flags visible + togglable for prototyping */}
+          You can also set NEXT_PUBLIC_* envs or use ?enableHeavy=true.
+        </p>
+      </Card>
+
+      <Card title="Mock Data Preview">
+        <pre className="overflow-auto rounded-lg bg-zinc-950 p-4 text-xs text-zinc-100">
+{JSON.stringify(users, null, 2)}
+        </pre>
+      </Card>
+    </div>
+  );
+}
