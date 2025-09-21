@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import { FeatureFlagProvider } from "@/lib/featureFlags";
 import { NavBar } from "@/components/NavBar";
 import DevBar from "@/components/cc/DevBar";
+import { ImageContainer } from "@/components/layout/ImageContainer";
+import MissionSection from "@/components/sections/MissionSection";
 import localFont from "next/font/local";
 
 const bwGradual = localFont({
@@ -31,6 +33,21 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <NavBar />
             </div>
           </header>
+          <div className="mx-auto max-w-6xl px-4 pt-6">
+            <ImageContainer
+              src="/images/content/Horse-Double-Black.png"
+              alt="Horse racing action"
+              ratio="1:1"
+              mode="contain"
+              className="mb-6"
+            />
+            <div className="mb-6 rounded-2xl bg-black" style={{ aspectRatio: "32/9" }}>
+              {/* 32:9 black container */}
+            </div>
+            <div className="mb-6 rounded-2xl bg-black flex items-center justify-center overflow-hidden" style={{ aspectRatio: "16/9" }}>
+              <MissionSection />
+            </div>
+          </div>
           <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
         </FeatureFlagProvider>
       </body>

@@ -23,6 +23,17 @@ function useIsDark(): boolean {
   return dark;
 }
 
+function useScrolled(): boolean {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial state
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  return scrolled;
+}
+
 export function BrandMark({
   className = "",
   size = 24,
@@ -35,7 +46,16 @@ export function BrandMark({
   label?: string;
 }) {
   const isDark = useIsDark();
-  const candidates = useMemo<Path[]>(() => (isDark ? BRAND.candidates.dark : BRAND.candidates.light), [isDark]);
+  const scrolled = useScrolled();
+  
+  // Use gold logo when scrolled, otherwise use theme-based candidates
+  const candidates = useMemo<Path[]>(() => {
+    if (scrolled) {
+      return ["/brand/EvolutionStables-Mono-Gold.svg"];
+    }
+    return isDark ? BRAND.candidates.dark : BRAND.candidates.light;
+  }, [isDark, scrolled]);
+  
   const [idx, setIdx] = useState(0);
   const src = candidates[idx];
 
@@ -54,7 +74,7 @@ export function BrandMark({
       ) : (
         <div className="grid h-6 w-6 place-items-center rounded border text-xs">E</div>
       )}
-      <span className="font-semibold">{label}</span>
+      {label && <span className="font-semibold">{label}</span>}
     </Link>
   );
 }

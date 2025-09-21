@@ -47,3 +47,4 @@ pids
 # Cache
 .cache/
 .parcel-cache/
+*storybook.log

@@ -35,7 +35,14 @@ function useTheme() {
     // sync prefers-color-scheme for convenience
     document.documentElement.style.colorScheme = on ? "dark" : "light";
   };
-  return { get, set };
+  const getPalette = () => typeof document !== "undefined" ? (document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark") : "dark";
+  const togglePalette = () => {
+    if (typeof document === "undefined") return;
+    const html = document.documentElement;
+    const now = html.getAttribute("data-theme") === "light" ? "dark" : "light";
+    if (now === "light") html.setAttribute("data-theme", "light"); else html.removeAttribute("data-theme");
+  };
+  return { get, set, getPalette, togglePalette };
 }
 
 function GridOverlay({ show }: { show: boolean }) {
@@ -67,6 +74,7 @@ export default function DevBar() {
         case "m": write({ apiMode: apiMode === "mock" ? "real" : "mock" }); break;
         case "g": setGrid((v) => !v); break;
         case "t": theme.set(!theme.get()); break;
+        case "p": theme.togglePalette(); break; // Palette (dark tokens ↔ light tokens)
       }
     };
     window.addEventListener("keydown", onKey);
@@ -106,8 +114,11 @@ export default function DevBar() {
               <button className={btn} onClick={() => theme.set(!theme.get())} title="t">
                 Theme
               </button>
+              <button className={btn} onClick={() => theme.togglePalette()} title="p">
+                Palette: {theme.getPalette()}
+              </button>
               <span className={`${pill} text-xs opacity-70`}>
-                devbar shortcuts: . r d h m g t
+                devbar shortcuts: . r d h m g t p
               </span>
             </>
           )}

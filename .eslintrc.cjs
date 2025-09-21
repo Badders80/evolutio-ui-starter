@@ -6,7 +6,9 @@ module.exports = {
   extends: [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
-    "plugin:tailwindcss/recommended"
+    "plugin:tailwindcss/recommended",
+    "plugin:storybook/recommended",
+    "plugin:storybook/recommended"
   ],
   rules: {
     "react-refresh/only-export-components": "off", // Next handles boundary splits

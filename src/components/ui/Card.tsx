@@ -10,8 +10,8 @@ export function Card({
   className?: string;
 }) {
   return (
-    <section className={`rounded-2xl border p-4 shadow-sm ${className}`}>
-      {title ? <h2 className="mb-2 text-lg font-semibold">{title}</h2> : null}
+    <section className={`card p-5 ${className}`}>
+      {title ? <h3 className="mb-2 text-lg font-semibold">{title}</h3> : null}
       {children}
     </section>
   );

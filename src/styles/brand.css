@@ -1,0 +1,37 @@
+/* =====================================================================================
+   Brand Design System - Dark Theme Tokens
+   ===================================================================================== */
+:root {
+  /* neutrals */
+  --bg: 0 0% 4%;
+  --fg: 0 0% 96%;
+  --muted: 0 0% 70%;
+  --subtle: 0 0% 60%;
+  --border: 0 0% 20%;
+  --overlay: 0 0% 6%;
+
+  /* surfaces */
+  --surface-1: 0 0% 10%;
+  --surface-2: 0 0% 13%;
+  --surface-3: 0 0% 16%;
+
+  /* brand */
+  --accent: 40 43% 61%;        /* exact #d4a964 */
+  --accent-strong: 40 50% 50%;
+  --accent-soft: 40 43% 20%;
+  --graphite: 0 0% 45%;        /* #747474 */
+
+  /* states (dark-tuned) */
+  --ok: 140 65% 42%;
+  --warn: 35 92% 60%;
+  --danger: 0 70% 52%;
+
+  color-scheme: dark;
+}
+
+/* spacing + polish helpers */
+:root {
+  --radius: 16px;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  --shadow-2: 0 2px 8px rgba(0,0,0,.4), 0 16px 40px rgba(0,0,0,.3);
+}

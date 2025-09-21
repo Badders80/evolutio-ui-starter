@@ -34,7 +34,7 @@ export function ImageContainer({
       <AspectBox 
         ratio={ratio} 
         bleed={bleed} 
-        className={`overflow-hidden ${rounded ? "rounded-2xl" : ""} ${bleed ? "" : "border shadow-sm"}`}
+        className={`overflow-hidden bg-black ${rounded ? "rounded-2xl" : ""} ${bleed ? "" : "border shadow-sm"}`}
       >
         <Image
           src={src}
@@ -43,9 +43,21 @@ export function ImageContainer({
           className="object-center"
           style={{
             objectFit: mode,
-            transform: `scale(${currentZoom})`
+            transform: `scale(${currentZoom * 1.60})`
           }}
         />
+        {/* 50% black overlay */}
+        <div className="absolute inset-0 bg-black/50" />
+        {/* Centered brand logo */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Image
+            src="/brand/Evolution-Stables-Logo.svg"
+            alt="Evolution Stables"
+            width={600}
+            height={300}
+            className="object-contain"
+          />
+        </div>
         {allowZoom && (
           <div className="absolute bottom-2 left-2 right-2">
             <input

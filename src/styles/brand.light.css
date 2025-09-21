@@ -1,0 +1,28 @@
+/* Light palette overrides; activate by setting <html data-theme="light"> */
+:root[data-theme="light"] {
+  /* neutrals */
+  --bg: 0 0% 100%;
+  --fg: 240 10% 10%;
+  --muted: 240 5% 35%;
+  --subtle: 240 4% 45%;
+  --border: 240 8% 86%;
+  --overlay: 0 0% 100%;
+  
+  /* surfaces */
+  --surface-1: 0 0% 99%;
+  --surface-2: 0 0% 97%;
+  --surface-3: 0 0% 94%;
+  
+  /* brand */
+  --accent: 40 43% 61%;       /* exact #d4a964 */
+  --accent-strong: 40 55% 50%;
+  --accent-soft: 40 43% 90%;
+  --graphite: 0 0% 40%;
+  
+  /* states */
+  --ok: 140 45% 35%;
+  --warn: 35 92% 45%;
+  --danger: 0 65% 46%;
+  
+  color-scheme: light;
+}

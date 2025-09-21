@@ -20,7 +20,7 @@ export function NavBar({ className = "" }: NavBarProps) {
 
   return (
     <div className={rootClass}>
-      <BrandMark size={36} label="Evolution Stables" className="shrink-0" />
+      <BrandMark size={36} label="" className="shrink-0" />
       <nav className="pointer-events-auto absolute left-1/2 flex -translate-x-1/2 items-center gap-6 text-sm">
         {links.map((link) => (
           <Link key={link.href} href={link.href} className="opacity-80 transition hover:opacity-100">
@@ -33,7 +33,7 @@ export function NavBar({ className = "" }: NavBarProps) {
           href="/get-started"
           className="rounded-full border px-4 py-1 text-sm font-medium transition hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-zinc-900"
         >
-          Get Starter
+          Get Started
         </Link>
         <Link
           href="/login"
