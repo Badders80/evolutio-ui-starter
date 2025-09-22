@@ -1,7 +1,12 @@
-/* src/app/sandbox/page.tsx */
-import Image from 'next/image';
+import { Metadata } from 'next';
+import ContentContainer from '@/components/ContentContainer';
+import ImageContainer from '@/components/ImageContainer';
 
-// Why: Root layout renders the "top set". This page adds experimental content.
+export const metadata: Metadata = {
+  title: 'Sandbox',
+  description: 'Prototype your UI here',
+};
+
 export default function SandboxPage() {
   // Only show in development
   if (process.env.NODE_ENV === 'production') {
@@ -9,16 +14,17 @@ export default function SandboxPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* 16:9 Image Container */}
-      <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-        <Image
-          src="/images/content/Background-hooves-back-and-white.jpg"
-          alt="Background hooves in black and white"
-          fill
-          className="object-cover"
-        />
-      </div>
-    </div>
+    <main className="min-h-screen bg-gray-100">
+      <ImageContainer
+        src="/images/content/Background-hooves-back-and-white.jpg"
+        alt="Sandbox Hero Image"
+      />
+      <ContentContainer>
+        <h1 className="mb-4 text-4xl font-bold">Sandbox Prototype</h1>
+        <p className="text-lg text-gray-600">
+          This page uses ContentContainer for padded, centered content and ImageContainer for a full-width, 16:9 image with clipped overflow. Use the Dev Bar (press .) to toggle tools like grid overlay (g).
+        </p>
+      </ContentContainer>
+    </main>
   );
 }
