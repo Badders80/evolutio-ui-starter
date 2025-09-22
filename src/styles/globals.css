@@ -37,6 +37,7 @@ body{ @apply bg-bg text-fg; }
   .kicker{ @apply uppercase tracking-[0.18em] text-xs text-subtle; }
   .lede{ @apply text-base md:text-lg text-muted; }
   .card{ border:1px solid hsl(var(--border)); border-radius:var(--radius); background-color:hsl(var(--surface-1)); box-shadow:var(--shadow-1); }
+  .shadow-2{ box-shadow:var(--shadow-2); }
   
   /* Gold gradient background (works in dark & light) */
   .bg-accent-gradient{

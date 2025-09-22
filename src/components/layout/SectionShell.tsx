@@ -12,7 +12,7 @@ type Props = React.PropsWithChildren<{
 }>;
 
 export default function SectionShell({ id, className, as = 'section', children, spaceY = 1.5 }: Props) {
-  const Comp = as as React.ElementType;
+  const Comp: any = as;
   const space = { 1: 'py-16', 1.5: 'py-20', 2: 'py-24' }[spaceY];
   return (
     <Comp id={id} className={['container mx-auto max-w-6xl px-6 sm:px-8', space, className].filter(Boolean).join(' ')}>

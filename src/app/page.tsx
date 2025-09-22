@@ -12,17 +12,8 @@ import { Footer } from "@/components/site/Footer";
 import { MARKETING } from "@/lib/assets";
 import content from '@/content/marketing.json';
 
-type MarketingContent = {
-  missionCombo: {
-    mission: { eyebrow?: string; title: string; body: string; cta?: { label: string; href: string; ariaLabel?: string } };
-    support: [{ heading: string; body: string }, { heading: string; body: string }];
-  };
-};
-
-const marketing = content as MarketingContent;
-
 export default function Page() {
-  const c = marketing.missionCombo;
+  const c = (content as any).missionCombo;
 
   return (
     <main className="space-y-12">
@@ -41,9 +32,9 @@ export default function Page() {
         <MissionCombo mission={c.mission} support={c.support} />
       </SectionShell>
 
-      {/* Repeat: ImageBand between your real sections */}
       <ImageBand src="/images/content/Background-hooves-back-and-white.jpg" alt="Track rail detail" height={320} />
 
+      {/* Restored original sections */}
       <SectionShell id="feature-flags">
         <Section
           title="Feature Flags"
@@ -77,14 +68,13 @@ export default function Page() {
 
       <SectionShell id="mock-real-seam">
         <Section
-          title="Mock + Real Seam"
+          title="Mock → Real Seam"
           imageSrc={MARKETING.alt.horseAndFoal}
           imageRatio="4:3"
           body={<p>Shared types and adapters let you wire real endpoints later without touching UI components.</p>}
         />
       </SectionShell>
 
-      {/* Keep your existing footer layout as-is */}
       <Footer />
     </main>
   );

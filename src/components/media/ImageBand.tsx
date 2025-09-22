@@ -26,7 +26,7 @@ export default function ImageBand({ src, alt, height = 360, speed = 36, overlay 
   return (
     <div
       ref={ref}
-      className={['container mx-auto max-w-6xl px-0 sm:px-0 overflow-hidden rounded-2xl shadow-xl', className].filter(Boolean).join(' ')}
+      className={['container mx-auto max-w-6xl px-0 sm:px-0 overflow-hidden rounded-2xl shadow-2', className].filter(Boolean).join(' ')}
       style={{ height }}
       aria-label={alt}
     >

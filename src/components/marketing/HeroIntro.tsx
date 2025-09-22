@@ -37,7 +37,7 @@ export default function HeroIntro({
   return (
     <MotionFeatures>
       <section className={['container mx-auto max-w-6xl px-0 sm:px-0'].join(' ')}>
-        <div className={['relative overflow-hidden rounded-2xl bg-black shadow-xl', className].filter(Boolean).join(' ')} style={{ minHeight: height }}>
+        <div className={['relative overflow-hidden rounded-2xl shadow-2 bg-black', className].filter(Boolean).join(' ')} style={{ minHeight: height }}>
           {/* Start black; BG fades/settles */}
           <m.img
             src={bgSrc}
@@ -90,7 +90,7 @@ export default function HeroIntro({
           {cta ? (
             <m.a
               href={cta.href}
-              className="absolute bottom-6 left-6 inline-flex rounded-xl bg-accent px-5 py-2.5 font-medium text-black shadow-xl"
+              className="absolute bottom-6 left-6 inline-flex rounded-xl bg-accent px-5 py-2.5 font-medium text-black shadow-2"
               initial={{ opacity: 0, y: reduced ? 0 : 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...springSoft, delay: 0.75 }}

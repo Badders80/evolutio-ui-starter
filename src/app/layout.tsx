@@ -1,8 +1,6 @@
 ﻿import "@/styles/globals.css";
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import type { ReactNode } from "react";
-import DevBar from "@/components/cc/DevBar";
 import { NavBar } from "@/components/NavBar";
 import { ImageContainer } from "@/components/layout/ImageContainer";
 import MissionSection from "@/components/sections/MissionSection";
@@ -38,9 +36,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           
           <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur dark:bg-zinc-950/80">
             <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-2">
-              <Suspense fallback={null}>
-                <DevBar />
-              </Suspense>
               <NavBar />
             </div>
           </header>
