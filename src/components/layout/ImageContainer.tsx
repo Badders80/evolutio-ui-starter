@@ -59,7 +59,7 @@ export function ImageContainer({
           />
         </div>
         {allowZoom && (
-          <div className="absolute bottom-2 left-2 right-2">
+          <div className="absolute inset-x-2 bottom-2">
             <input
               type="range"
               min="1"
@@ -67,7 +67,7 @@ export function ImageContainer({
               step="0.1"
               value={currentZoom}
               onChange={(e) => setCurrentZoom(Number(e.target.value))}
-              className="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer backdrop-blur"
+              className="h-1 w-full cursor-pointer appearance-none rounded-lg bg-white/20 backdrop-blur"
             />
           </div>
         )}

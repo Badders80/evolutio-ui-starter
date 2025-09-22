@@ -1,6 +1,6 @@
-"use client";
+﻿"use client";
 
-import { createContext, useContext, useMemo, ReactNode } from "react";
+import { createContext, useContext, ReactNode } from "react";
 
 export type Flags = {
   apiMode: "mock" | "real";
@@ -14,15 +14,13 @@ export function FeatureFlagProvider({ children }: { children: ReactNode }) {
   const isBrowser = typeof window !== "undefined";
   const params = isBrowser ? new URLSearchParams(window.location.search) : null;
 
-  const flags = useMemo<Flags>(() => {
-    const read = (k: string, def = "") =>
-      (params?.get(k) ?? process.env[`NEXT_PUBLIC_${k.toUpperCase()}`] ?? def).toString();
+  const read = (key: string, fallback = "") =>
+    (params?.get(key) ?? process.env[`NEXT_PUBLIC_${key.toUpperCase()}`] ?? fallback).toString();
 
-    return {
-      apiMode: (read("apiMode", "mock") as Flags["apiMode"]) || "mock",
-      enableHeavy: read("enableHeavy", "false") === "true"
-    };
-  }, [params]);
+  const flags: Flags = {
+    apiMode: (read("apiMode", "mock") as Flags["apiMode"]) || "mock",
+    enableHeavy: read("enableHeavy", "false") === "true"
+  };
 
   return <FlagsCtx.Provider value={flags}>{children}</FlagsCtx.Provider>;
 }

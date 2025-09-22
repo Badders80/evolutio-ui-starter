@@ -1,11 +1,12 @@
 import type { Config } from "tailwindcss";
 
-export default {
-  content: ["./src/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}"],
+const config: Config = {
+  darkMode: ["class"],
+  content: ["./src/**/*.{ts,tsx,mdx}", "./.storybook/**/*.{ts,tsx}"],
   theme: {
     extend: {
       fontFamily: {
-        heading: ["var(--font-heading)"]
+        heading: ["var(--font-heading)", "ui-sans-serif", "system-ui", "sans-serif"]
       },
       colors: {
         bg: "hsl(var(--bg)/<alpha-value>)",
@@ -37,4 +38,6 @@ export default {
     }
   },
   plugins: []
-} satisfies Config;
+};
+
+export default config;

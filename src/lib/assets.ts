@@ -40,6 +40,10 @@ export const MARKETING = {
   // Hero: dark/close-up horses — good for poster overlay
   hero: asPath("images/content/Horse-Double-Black.png"),
   // Band images (section separators)
+  "band-1": asPath("images/content/Hooves-on-grass.png"),
+  "band-2": asPath("images/content/Landscape-digitaloverlay.jpg"),
+  "band-3": asPath("images/content/Horse-and-foal.jpg"),
+  // Legacy mapping
   band1: asPath("images/content/Hooves-on-grass.png"),
   band2: asPath("images/content/Landscape-digitaloverlay.jpg"),
   // Alternates you can swap to any time:
@@ -48,6 +52,30 @@ export const MARKETING = {
     horseAndFoal: asPath("images/content/Horse-and-foal.jpg")
   }
 } as const;
+
+// Helper for getting marketing images with metadata
+export function getMarketingImage(imageName: string) {
+  const images: Record<string, { src: Path; alt: string }> = {
+    "band-1": {
+      src: MARKETING["band-1"],
+      alt: "Horse hooves on grass, close-up detail shot",
+    },
+    "band-2": {
+      src: MARKETING["band-2"],
+      alt: "Digital landscape overlay with racing imagery",
+    },
+    "band-3": {
+      src: MARKETING["band-3"],
+      alt: "Horse and foal together in pastoral setting",
+    },
+    hero: {
+      src: MARKETING.hero,
+      alt: "Dramatic silhouette of two horses",
+    },
+  };
+
+  return images[imageName] || null;
+}
 
 // Helper if you want to version/cache-bust assets later
 export function v(path: Path, version = "v1"): Path {

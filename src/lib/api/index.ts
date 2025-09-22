@@ -1,3 +1,4 @@
+﻿import type { User } from "./types";
 import { getUsersMock } from "./mocks";
 import { getUsersReal } from "./real";
 
@@ -11,7 +12,7 @@ function readFlag(name: string, def: string) {
   return (process.env[`NEXT_PUBLIC_${name.toUpperCase()}`] as string) ?? def;
 }
 
-export async function getUsers() {
+export async function getUsers(): Promise<User[]> {
   const mode = (readFlag("apiMode", "mock") as "mock" | "real") ?? "mock";
   return mode === "real" ? getUsersReal() : getUsersMock();
 }

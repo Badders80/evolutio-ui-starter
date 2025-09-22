@@ -1,3 +1,3 @@
-export function Accent({ children }: { children: React.ReactNode }) {
-  return <span className="text-accent font-medium">{children}</span>;
+﻿export function Accent({ children }: { children: React.ReactNode }) {
+  return <span className="font-medium text-accent">{children}</span>;
 }

@@ -1,21 +1,21 @@
-"use client";
+﻿"use client";
 import MissionSection from "@/components/sections/MissionSection";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 
 const initialState = {
   kicker: "OUR MISSION",
   titleTop: "OWNERSHIP",
   titleBottom: "RE-IMAGINED",
   body1:
-    "Traditional racehorse ownership — expensive, restrictive, and opaque — has historically excluded those who dream of experiencing the thrill firsthand.",
+    "Traditional racehorse ownership - expensive, restrictive, and opaque - has historically excluded those who dream of experiencing the thrill firsthand.",
   body2:
     "Evolution Stables removes these barriers, delivering ownership that's genuinely accessible, fully transparent, and uniquely liquid.",
   ctaLabel: "Join the revolution",
   ctaHref: "/own",
 };
 
-export default function MissionPrototype() {
+function MissionPrototypeContent() {
   const sp = useSearchParams();
   const [state, setState] = useState(initialState);
 
@@ -42,6 +42,14 @@ export default function MissionPrototype() {
 
       <MissionControls state={state} setState={setState} />
     </div>
+  );
+}
+
+export default function MissionPrototypePage() {
+  return (
+    <Suspense fallback={null}>
+      <MissionPrototypeContent />
+    </Suspense>
   );
 }
 
@@ -98,7 +106,7 @@ function MissionControls({
 
   return (
     <aside className="rounded-2xl border border-border bg-surface-1 p-4">
-      <div className="mb-3 text-sm font-semibold">Mission — Prototype Controls</div>
+      <div className="mb-3 text-sm font-semibold">Mission - Prototype Controls</div>
       <Field label="Kicker" k="kicker" />
       <Field label="Title (Top)" k="titleTop" />
       <Field label="Title (Bottom)" k="titleBottom" />
@@ -107,12 +115,16 @@ function MissionControls({
       <Field label="CTA Label" k="ctaLabel" />
       <Field label="CTA Href" k="ctaHref" />
       <div className="mt-4 flex gap-2">
-        <button className="rounded-xl border border-border px-3 py-1 text-xs hover:bg-white/5"
-          onClick={updateUrl}>
+        <button
+          className="rounded-xl border border-border px-3 py-1 text-xs hover:bg-white/5"
+          onClick={updateUrl}
+        >
           Copy state to URL
         </button>
       </div>
-      <p className="mt-3 text-xs text-subtle">Share this page with the query params to review this exact copy.</p>
+      <p className="mt-3 text-xs text-subtle">
+        Share this page with the query params to review this exact copy.
+      </p>
     </aside>
   );
 }

@@ -24,7 +24,7 @@ export function Section({
       <div className={`grid items-center gap-8 py-12 md:grid-cols-2 md:py-16 ${reverse ? "md:[&>*:first-child]:order-2" : ""}`}>
         <ContentContainer max="none" pad="none">
           <h3 className="text-xl font-semibold tracking-tight md:text-2xl">{title}</h3>
-          <div className="prose prose-zinc mt-3 max-w-none dark:prose-invert">
+          <div className="prose prose-zinc dark:prose-invert mt-3 max-w-none">
             {body}
           </div>
         </ContentContainer>

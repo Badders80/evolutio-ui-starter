@@ -1,5 +1,5 @@
-// ============================================================================
-// Robust logo that cycles through candidates (env → gold/white/black) per theme.
+﻿// ============================================================================
+// Robust logo that cycles through candidates (env â†’ gold/white/black) per theme.
 // ============================================================================
 "use client";
 
@@ -72,7 +72,7 @@ export function BrandMark({
           onError={() => setIdx((i) => (i + 1 < candidates.length ? i + 1 : i))}
         />
       ) : (
-        <div className="grid h-6 w-6 place-items-center rounded border text-xs">E</div>
+        <div className="grid size-6 place-items-center rounded border text-xs">E</div>
       )}
       {label && <span className="font-semibold">{label}</span>}
     </Link>

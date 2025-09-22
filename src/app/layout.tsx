@@ -1,35 +1,46 @@
-import "./../styles/globals.css";
+﻿import "@/styles/globals.css";
+import type { Metadata } from "next";
+import { Suspense } from "react";
 import type { ReactNode } from "react";
-import { FeatureFlagProvider } from "@/lib/featureFlags";
-import { NavBar } from "@/components/NavBar";
 import DevBar from "@/components/cc/DevBar";
+import { NavBar } from "@/components/NavBar";
 import { ImageContainer } from "@/components/layout/ImageContainer";
 import MissionSection from "@/components/sections/MissionSection";
-import localFont from "next/font/local";
+import { FeatureFlagProvider } from "@/lib/featureFlags";
+import { heading } from "@/styles/fonts";
+// import NavFadeIn from "@/components/layout/NavFadeIn"; // ← Uncomment to use navigation fade-in
 
-const bwGradual = localFont({
-  variable: "--font-heading",
-  display: "swap",
-  fallback: ["system-ui", "Segoe UI", "Arial", "sans-serif"],
-  src: [
-    { path: "../../public/fonts/bwgradual/BwGradual-Medium.woff2", weight: "500", style: "normal" },
-    { path: "../../public/fonts/bwgradual/BwGradual-Bold.woff2", weight: "700", style: "normal" }
-  ]
-});
-
-export const metadata = {
-  title: "Evolution UI Starter",
-  description: "UI-first Next.js starter with flags and mocks"
+export const metadata: Metadata = {
+  title: "Evolutio UI Starter",
+  description: "UI-first Next.js starter focused on speed."
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body className={`${bwGradual.variable} font-sans min-h-dvh bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100`}>
+    // eslint-disable-next-line tailwindcss/no-custom-classname
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body
+        className={`${heading.variable} min-h-dvh bg-white font-sans text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100`}
+      >
         <FeatureFlagProvider>
+          {/* Example NavFadeIn usage - uncomment and adapt to your needs:
+          <NavFadeIn delay={1.1}>
+            <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur dark:bg-zinc-950/80">
+              <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-2">
+                <Suspense fallback={null}>
+                  <DevBar />
+                </Suspense>
+                <NavBar />
+              </div>
+            </header>
+          </NavFadeIn>
+          */}
+          
           <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur dark:bg-zinc-950/80">
             <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-2">
-              <DevBar />
+              <Suspense fallback={null}>
+                <DevBar />
+              </Suspense>
               <NavBar />
             </div>
           </header>
@@ -44,7 +55,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <div className="mb-6 rounded-2xl bg-black" style={{ aspectRatio: "32/9" }}>
               {/* 32:9 black container */}
             </div>
-            <div className="mb-6 rounded-2xl bg-black flex items-center justify-center overflow-hidden" style={{ aspectRatio: "16/9" }}>
+            <div
+              className="mb-6 flex items-center justify-center overflow-hidden rounded-2xl bg-black"
+              style={{ aspectRatio: "16/9" }}
+            >
               <MissionSection />
             </div>
           </div>

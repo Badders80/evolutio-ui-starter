@@ -13,7 +13,7 @@ export function AspectBox({ ratio, bleed = false, children, className = "" }: Pr
   
   return (
     <div
-      className={`relative ${bleed ? "w-screen -mx-4 md:-mx-6" : "w-full"} ${className}`}
+      className={`relative ${bleed ? "-mx-4 w-screen md:-mx-6" : "w-full"} ${className}`}
       style={{ aspectRatio }}
     >
       {children}

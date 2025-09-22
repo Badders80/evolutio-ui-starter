@@ -1,17 +1,37 @@
-import type { StorybookConfig } from "@storybook/nextjs";
+﻿import path from 'path';
+import type { StorybookConfig } from '@storybook/nextjs';
 
 const config: StorybookConfig = {
-  framework: { name: "@storybook/nextjs", options: {} },
-  stories: ["../src/**/*.stories.@(ts|tsx)"],
-  addons: ["@storybook/addon-essentials", "@storybook/addon-interactions"],
-  staticDirs: ["../public"],
-  docs: { autodocs: "tag" },
-  webpackFinal: async (config) => {
-    // Ensure webpack hooks are properly initialized
-    if (config.cache && typeof config.cache === 'object') {
-      config.cache.type = 'memory';
+  stories: ['../src/**/*.stories.@(ts|tsx|mdx)'],
+  addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],
+  staticDirs: ['../public'],
+  framework: {
+    name: '@storybook/nextjs',
+    options: {
+      builder: { useSWC: true },
+      nextConfigPath: path.resolve(__dirname, '../next.config.mjs')
     }
-    return config;
+  },
+  docs: { autodocs: 'tag' },
+  webpackFinal: async (cfg) => {
+    cfg.resolve = cfg.resolve ?? {};
+    cfg.resolve.alias = {
+      ...(cfg.resolve.alias ?? {}),
+      '@': path.resolve(__dirname, '../src')
+    };
+    cfg.module?.rules?.push({
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: [{ loader: require.resolve('@svgr/webpack'), options: { icon: false } }]
+    });
+    cfg.resolve.fallback = {
+      ...(cfg.resolve.fallback ?? {}),
+      fs: false,
+      path: false,
+      crypto: false
+    };
+    return cfg;
   }
 };
+
 export default config;

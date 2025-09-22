@@ -1,0 +1,20 @@
+﻿{
+  "missionCombo": {
+    "mission": {
+      "eyebrow": "Our Mission",
+      "title": "Ownership Reimagined",
+      "body": "Traditional racehorse ownership, often limited and complex, has historically excluded many who dream of experiencing the thrill firsthand. Evolution Stables removes these barriers, delivering ownership that's genuinely accessible, fully transparent, and uniquely flexible.",
+      "cta": { "label": "Join the Revolution", "href": "/join" }
+    },
+    "support": [
+      {
+        "heading": "For Breeders & Syndicators: Unlocking New Opportunities",
+        "body": "Access a broader, engaged network of investors through a seamless digital platform designed to maximize the value and excitement of your thoroughbreds. Manage leases, share performance, and gain transparent returns while retaining expert oversight."
+      },
+      {
+        "heading": "For Investors & Fans: Your Ownership Experience",
+        "body": "Tap into a dynamic and flexible ownership model offering shared returns, risk mitigation, and an engaging community experience without traditional barriers. Own shares as small or large as you like and enjoy real-time insights and rewards."
+      }
+    ]
+  }
+}

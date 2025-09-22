@@ -2,12 +2,11 @@
 module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "react-refresh", "tailwindcss"],
+  plugins: ["@typescript-eslint", "react-refresh", "tailwindcss", "storybook"],
   extends: [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "plugin:tailwindcss/recommended",
-    "plugin:storybook/recommended",
     "plugin:storybook/recommended"
   ],
   rules: {

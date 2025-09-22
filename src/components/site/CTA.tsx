@@ -1,10 +1,10 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 export function CTA() {
   return (
     <section className="mx-auto max-w-6xl px-4">
       <div className="rounded-2xl border p-6 text-center shadow-sm md:p-10">
-        <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Prototype today. Flip to "real" tomorrow.</h2>
+        <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Prototype today. Flip to &quot;real&quot; tomorrow.</h2>
         <p className="mx-auto mt-2 max-w-2xl text-zinc-600 dark:text-zinc-400">
           Use mocks by default, then enable real APIs with a toggle. Keep momentum without teardown.
         </p>

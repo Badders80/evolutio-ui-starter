@@ -1,31 +1,42 @@
 ﻿"use client";
 
+import type { ReactNode } from "react";
+import { motion } from "framer-motion";
 import { Accent } from "@/components/site/Accent";
 import { Button } from "@/components/ui/Button";
-import { motion } from "framer-motion";
 
 export type MissionSectionProps = {
   kicker?: string;
   titleTop?: string;
   titleBottom?: string;
-  body1?: string;
-  body2?: string;
+  body1?: ReactNode;
+  body2?: ReactNode;
   ctaLabel?: string;
   ctaHref?: string;
   asContent?: boolean;
 };
 
+const defaultBody1 =
+  "Traditional racehorse ownership - expensive, restrictive, and opaque - has historically excluded those who dream of experiencing the thrill firsthand.";
+
+const defaultBody2 = (
+  <>
+    We deliver ownership that&apos;s <Accent>genuinely accessible</Accent>, <Accent>fully transparent</Accent>, and{' '}
+    <Accent>uniquely liquid</Accent>.
+  </>
+);
+
 export default function MissionSection({
   kicker = "OUR MISSION",
   titleTop = "OWNERSHIP",
   titleBottom = "RE-IMAGINED",
-  body1 = "Traditional racehorse ownership — expensive, restrictive, and opaque — has historically excluded those who dream of experiencing the thrill firsthand.",
-  body2 = "Evolution Stables removes these barriers, delivering ownership that’s genuinely accessible, fully transparent, and uniquely liquid.",
+  body1 = defaultBody1,
+  body2 = defaultBody2,
   ctaLabel = "Join the revolution",
   ctaHref = "/own",
   asContent = true
 }: MissionSectionProps) {
-  const Wrapper = ({ children }: { children: React.ReactNode }) =>
+  const Wrapper = ({ children }: { children: ReactNode }) =>
     asContent ? <div className="container-page">{children}</div> : <>{children}</>;
 
   return (
@@ -40,7 +51,7 @@ export default function MissionSection({
         >
           <div className="kicker mb-3">{kicker}</div>
 
-          <h1 className="mb-6 font-heading leading-[0.95] tracking-tightest text-[clamp(2.5rem,6vw,4.25rem)]">
+          <h1 className="mb-6 font-heading text-[clamp(2.5rem,6vw,4.25rem)] leading-[0.95] tracking-tight">
             <span className="block">{titleTop}</span>
             <span className="block">{titleBottom}</span>
           </h1>
@@ -48,12 +59,11 @@ export default function MissionSection({
           <p className="lede mb-5 max-w-4xl">{body1}</p>
 
           <p className="lede mb-8 max-w-4xl">
-            We deliver ownership that’s <Accent>genuinely accessible</Accent>, <Accent>fully transparent</Accent>, and{" "}
-            <Accent>uniquely liquid</Accent>.
+            {body2}
           </p>
 
           <Button href={ctaHref} variant="outline" className="border-accent text-accent hover:bg-accent/10">
-            {ctaLabel} <ArrowRight className="ml-2 inline-block h-4 w-4 align-[-1px]" />
+            {ctaLabel} <ArrowRight className="ml-2 inline-block size-4 align-[-1px]" />
           </Button>
         </motion.div>
       </Wrapper>
