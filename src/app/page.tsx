@@ -13,7 +13,7 @@ import { MARKETING } from "@/lib/assets";
 import content from '@/content/marketing.json';
 
 export default function Page() {
-  const c = (content as any).missionCombo;
+  const c = (content as { missionCombo: any }).missionCombo;
 
   return (
     <main className="space-y-12">

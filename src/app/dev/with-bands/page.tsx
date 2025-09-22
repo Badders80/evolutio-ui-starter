@@ -8,7 +8,7 @@ import MissionCombo from '@/components/marketing/MissionCombo';
 import content from '@/content/marketing.json';
 
 export default function DevWithBandsPage() {
-  const c = (content as any).missionCombo;
+  const c = (content as { missionCombo: any }).missionCombo;
 
   return (
     <main className="space-y-12">
