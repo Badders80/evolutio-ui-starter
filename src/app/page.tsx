@@ -1,4 +1,4 @@
-﻿// ======================================================================
+// ======================================================================
 // /src/app/page.tsx  (example wiring: hero → image band → your sections)
 // Swap the image paths to your assets under /public/images/... 
 // Wrap tight sections in <SectionShell> so margins match the hero.

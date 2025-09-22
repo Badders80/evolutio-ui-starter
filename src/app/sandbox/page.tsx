@@ -1,40 +1,44 @@
-// ================================================
-// FILE: src/app/sandbox/page.tsx
-// Purpose: Single, canonical sandbox page for all WIP experiments.
-// Behavior: Hidden in production unless NEXT_PUBLIC_SANDBOX_ENABLED="true".
-// ================================================
-import { notFound } from "next/navigation";
+import { notFound } from 'next/navigation';
+import HeroIntro from '@/components/marketing/HeroIntro';
+import ImageBand from '@/components/media/ImageBand';
+import MissionTopCard from '@/components/marketing/MissionTopCard';
+import FromMissionDown from './FromMissionDown';
 
 export const metadata = {
-  title: "Sandbox",
-  description: "Work-in-progress playground for UI experiments.",
+  title: 'Sandbox',
+  description: 'Work-in-progress playground for UI experiments.',
 };
 
 export default function SandboxPage() {
   const enabled =
-    process.env.NODE_ENV !== "production" ||
-    process.env.NEXT_PUBLIC_SANDBOX_ENABLED === "true";
+    process.env.NODE_ENV !== 'production' ||
+    process.env.NEXT_PUBLIC_SANDBOX_ENABLED === 'true';
 
   if (!enabled) {
-    // Why: avoid leaking WIP to prod.
+    // Prevent leaking experiments in production.
     notFound();
   }
 
   return (
-    <main className="mx-auto max-w-5xl space-y-6 p-6">
-      <h1 className="text-3xl font-semibold">Sandbox</h1>
-      <p className="opacity-80">
-        This area is for experiments and rough work. It can be enabled in prod
-        by setting <code>NEXT_PUBLIC_SANDBOX_ENABLED=&quot;true&quot;</code>.
-      </p>
+    <main className="min-h-screen space-y-12 bg-black pb-16 text-zinc-100">
+      {/* === Keep your existing first two sections here (unchanged) === */}
+      <HeroIntro
+        bgSrc="/images/content/Horse-and-foal.jpg"
+        brandSrc="/public/brand/Evolution-Stables-Logo-White.png"
+        brandAlt="EVOLUTION STABLES"
+        cta={{ label: 'Get Started', href: '/join' }}
+        height={700}
+        overlay={0.45}
+      />
 
-      {/* Add your experimental sections below */}
-      <section className="rounded-2xl border p-4">
-        <h2 className="text-xl font-medium">Example area</h2>
-        <p className="opacity-80">
-          Put WIP pages, flows, and prototypes here. Use Storybook for component-level work.
-        </p>
-      </section>
+      <ImageBand src="/images/content/Hooves-on-grass.png" alt="Thoroughbreds in motion" height={380} />
+
+      {/* === Single Mission block (top visual + bottom copy) === */}
+      <MissionTopCard />
+
+      {/* === Everything after Mission === */}
+      <FromMissionDown />
     </main>
   );
 }
+

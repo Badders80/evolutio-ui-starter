@@ -1,5 +1,5 @@
-// ======================================================================
-// /src/app/dev/with-bands/page.tsx  (dev preview; safe to add)
+﻿// ======================================================================
+// /src/app/sandbox/with-bands/page.tsx  (dev preview; safe to add)
 // Demonstrates SectionShell + ImageBand + MissionCombo.
 // ======================================================================
 import SectionShell from '@/components/layout/SectionShell';
@@ -22,7 +22,7 @@ export default function DevWithBandsPage() {
       <SectionShell id="two-paths">
         <div className="rounded-2xl bg-surface-2 p-8 shadow-xl">
           <h2 className="font-heading text-3xl text-accent">Two Paths to Ownership</h2>
-          <p className="mt-2 text-muted">— placeholder demo block —</p>
+          <p className="mt-2 text-muted">â€” placeholder demo block â€”</p>
         </div>
       </SectionShell>
 
@@ -31,7 +31,7 @@ export default function DevWithBandsPage() {
       <SectionShell id="about">
         <div className="rounded-2xl bg-surface-2 p-8 shadow-xl">
           <h2 className="font-heading text-3xl text-accent">Ownership, the Evolution Way</h2>
-          <p className="mt-2 text-muted">— placeholder demo block —</p>
+          <p className="mt-2 text-muted">â€” placeholder demo block â€”</p>
         </div>
       </SectionShell>
 
@@ -41,3 +41,4 @@ export default function DevWithBandsPage() {
     </main>
   );
 }
+
